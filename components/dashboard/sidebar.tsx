@@ -10,6 +10,7 @@ import {
   CreditCard,
   Receipt,
   BarChart3,
+  MessageSquare,
   LogOut,
 } from "lucide-react";
 import { cn } from "@/lib/utils/cn";
@@ -23,6 +24,7 @@ const navItems = [
   { href: "/payments", label: "Payments", icon: CreditCard },
   { href: "/expenses", label: "Expenses", icon: Receipt },
   { href: "/reports", label: "Reports", icon: BarChart3 },
+  { href: "/feedback", label: "Feedback", icon: MessageSquare },
 ];
 
 export function Sidebar({ userEmail }: { userEmail: string }) {
