@@ -254,6 +254,8 @@ CREATE POLICY "expenses: owner full access"
 CREATE OR REPLACE FUNCTION set_updated_at()
 RETURNS trigger
 LANGUAGE plpgsql
+SECURITY DEFINER
+SET search_path = public
 AS $$
 BEGIN
   NEW.updated_at = now();
