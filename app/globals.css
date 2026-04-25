@@ -30,9 +30,8 @@
   --radius: 0.5rem;
 }
 
-/* ── Dark mode ───────────────────────────────────────────────────────────── */
-@media (prefers-color-scheme: dark) {
-  :root {
+/* ── Dark mode (controlled by next-themes via .dark class on <html>) ─────── */
+.dark {
     --background: #0f172a;
     --foreground: #f8fafc;
 

@@ -9,6 +9,7 @@ import {
 } from "lucide-react";
 import { cn } from "@/lib/utils/cn";
 import { createClient } from "@/lib/supabase/client";
+import { ThemeToggle } from "@/components/theme-toggle";
 
 const navItems = [
   { href: "/", label: "Dashboard", icon: LayoutDashboard },
@@ -37,9 +38,12 @@ export function MobileNav({ userEmail }: { userEmail: string }) {
       {/* Top bar */}
       <div className="lg:hidden flex items-center justify-between px-4 py-3 border-b border-border bg-card">
         <span className="text-sm font-semibold">Landlord Ledger</span>
-        <button onClick={() => setOpen(!open)} className="p-1 rounded-md hover:bg-accent">
-          {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-        </button>
+        <div className="flex items-center gap-1">
+          <ThemeToggle />
+          <button onClick={() => setOpen(!open)} className="p-1 rounded-md hover:bg-accent">
+            {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+          </button>
+        </div>
       </div>
 
       {/* Dropdown menu */}

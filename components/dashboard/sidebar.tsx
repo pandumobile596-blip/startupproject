@@ -15,6 +15,7 @@ import {
 } from "lucide-react";
 import { cn } from "@/lib/utils/cn";
 import { createClient } from "@/lib/supabase/client";
+import { ThemeToggle } from "@/components/theme-toggle";
 
 const navItems = [
   { href: "/", label: "Dashboard", icon: LayoutDashboard },
@@ -68,8 +69,11 @@ export function Sidebar({ userEmail }: { userEmail: string }) {
       </nav>
 
       {/* Footer */}
-      <div className="border-t border-border px-4 py-4 space-y-2">
-        <p className="text-xs text-muted-foreground truncate">{userEmail}</p>
+      <div className="border-t border-border px-4 py-4 space-y-3">
+        <div className="flex items-center justify-between">
+          <p className="text-xs text-muted-foreground truncate">{userEmail}</p>
+          <ThemeToggle />
+        </div>
         <button
           onClick={handleSignOut}
           className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors"

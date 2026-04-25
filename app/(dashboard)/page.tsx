@@ -82,7 +82,7 @@ export default async function DashboardPage() {
         </p>
       </div>
 
-      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-3">
         <StatCard title="Gross Rent Collected" value={formatUSD(stats.grossRent)} />
         <StatCard title="Total Expenses" value={formatUSD(stats.totalExpenses)} />
         <StatCard

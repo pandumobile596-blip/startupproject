@@ -53,8 +53,8 @@ export default async function LeasesPage() {
           <Button asChild size="sm"><Link href="/leases/new">New Lease</Link></Button>
         </div>
       ) : (
-        <div className="rounded-xl border border-border overflow-hidden">
-          <table className="w-full text-sm">
+        <div className="rounded-xl border border-border overflow-hidden overflow-x-auto">
+          <table className="w-full min-w-[700px] text-sm">
             <thead className="bg-muted/50">
               <tr>
                 {["Tenant", "Property / Unit", "Rent/mo", "Due Day", "Start", "End", "Status"].map((h) => (

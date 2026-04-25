@@ -59,8 +59,8 @@ export default async function PaymentsPage() {
           <Button asChild size="sm"><Link href="/payments/new">Log Payment</Link></Button>
         </div>
       ) : (
-        <div className="rounded-xl border border-border overflow-hidden">
-          <table className="w-full text-sm">
+        <div className="rounded-xl border border-border overflow-hidden overflow-x-auto">
+          <table className="w-full min-w-[700px] text-sm">
             <thead className="bg-muted/50">
               <tr>
                 {["Tenant", "Unit", "Type", "Method", "Amount", "Due", "Received", "Status"].map((h) => (

@@ -88,8 +88,8 @@ export default async function ExpensesPage() {
           <Button asChild size="sm"><Link href="/expenses/new">Add Expense</Link></Button>
         </div>
       ) : (
-        <div className="rounded-xl border border-border overflow-hidden">
-          <table className="w-full text-sm">
+        <div className="rounded-xl border border-border overflow-hidden overflow-x-auto">
+          <table className="w-full min-w-[750px] text-sm">
             <thead className="bg-muted/50">
               <tr>
                 {["Date", "Category", "Description", "Vendor", "Property", "Amount", "Tax Ded.", ""].map((h) => (

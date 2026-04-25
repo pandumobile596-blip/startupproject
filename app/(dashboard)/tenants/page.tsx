@@ -40,8 +40,8 @@ export default async function TenantsPage() {
           <Button asChild size="sm"><Link href="/tenants/new">Add Tenant</Link></Button>
         </div>
       ) : (
-        <div className="rounded-xl border border-border overflow-hidden">
-          <table className="w-full text-sm">
+        <div className="rounded-xl border border-border overflow-hidden overflow-x-auto">
+          <table className="w-full min-w-[500px] text-sm">
             <thead className="bg-muted/50">
               <tr>
                 {["Name", "Email", "Phone"].map((h) => (
