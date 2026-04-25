@@ -53,10 +53,9 @@
     --destructive: #ef4444;
     --destructive-foreground: #ffffff;
 
-    --border: #334155;
-    --input: #334155;
-    --ring: #3b82f6;
-  }
+  --border: #334155;
+  --input: #334155;
+  --ring: #3b82f6;
 }
 
 /* ── Tailwind v4 theme mapping ───────────────────────────────────────────── */
