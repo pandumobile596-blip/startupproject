@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { createClient } from "@/lib/supabase/server";
 import { Button } from "@/components/ui/button";
+import { EmptyState } from "@/components/ui/empty-state";
 import { Users, Plus } from "lucide-react";
 import type { Metadata } from "next";
 
@@ -33,12 +34,14 @@ export default async function TenantsPage() {
       </div>
 
       {(!tenants || tenants.length === 0) ? (
-        <div className="flex flex-col items-center justify-center rounded-xl border border-dashed border-border py-16 text-center space-y-3">
-          <Users className="h-8 w-8 text-muted-foreground" />
-          <p className="text-sm font-medium">No tenants yet</p>
-          <p className="text-sm text-muted-foreground">Add your first tenant to start managing leases.</p>
-          <Button asChild size="sm"><Link href="/tenants/new">Add Tenant</Link></Button>
-        </div>
+        <EmptyState
+          icon={Users}
+          title="No tenants yet"
+          description="Add your tenants here to track their contact info, lease history, and notes."
+          tip="Once you add a tenant, you can link them to a unit and create a lease — which enables payment tracking and reports."
+          ctaLabel="Add Your First Tenant"
+          ctaHref="/tenants/new"
+        />
       ) : (
         <div className="rounded-xl border border-border overflow-hidden overflow-x-auto">
           <table className="w-full min-w-[500px] text-sm">

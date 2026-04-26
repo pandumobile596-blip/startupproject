@@ -3,6 +3,7 @@ import { createClient } from "@/lib/supabase/server";
 import { formatUSD } from "@/lib/utils/currency";
 import { formatDate } from "@/lib/utils/dates";
 import { Button } from "@/components/ui/button";
+import { EmptyState } from "@/components/ui/empty-state";
 import { FileText, Plus } from "lucide-react";
 import type { Metadata } from "next";
 
@@ -46,12 +47,14 @@ export default async function LeasesPage() {
       </div>
 
       {(!leases || leases.length === 0) ? (
-        <div className="flex flex-col items-center justify-center rounded-xl border border-dashed border-border py-16 text-center space-y-3">
-          <FileText className="h-8 w-8 text-muted-foreground" />
-          <p className="text-sm font-medium">No leases yet</p>
-          <p className="text-sm text-muted-foreground">Create a lease by linking a unit to a tenant.</p>
-          <Button asChild size="sm"><Link href="/leases/new">New Lease</Link></Button>
-        </div>
+        <EmptyState
+          icon={FileText}
+          title="No leases yet"
+          description="Create a lease to link a tenant to a unit and set the rent amount, due date, and term."
+          tip="Leases are the foundation of payment tracking. Once a lease is active, Landlord Ledger can tell you exactly who has paid and who hasn't — each month."
+          ctaLabel="Create Your First Lease"
+          ctaHref="/leases/new"
+        />
       ) : (
         <div className="rounded-xl border border-border overflow-hidden overflow-x-auto">
           <table className="w-full min-w-[700px] text-sm">

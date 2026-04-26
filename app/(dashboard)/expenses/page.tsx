@@ -4,6 +4,7 @@ import { formatUSD } from "@/lib/utils/currency";
 import { formatDate } from "@/lib/utils/dates";
 import { Button } from "@/components/ui/button";
 import { DeleteExpenseButton } from "@/components/expenses/delete-expense-button";
+import { EmptyState } from "@/components/ui/empty-state";
 import { Receipt, Plus, AlertTriangle } from "lucide-react";
 import type { Metadata } from "next";
 
@@ -81,12 +82,14 @@ export default async function ExpensesPage() {
       )}
 
       {(!expenses || expenses.length === 0) ? (
-        <div className="flex flex-col items-center justify-center rounded-xl border border-dashed border-border py-16 text-center space-y-3">
-          <Receipt className="h-8 w-8 text-muted-foreground" />
-          <p className="text-sm font-medium">No expenses logged yet</p>
-          <p className="text-sm text-muted-foreground">Track repairs, insurance, utilities, and more.</p>
-          <Button asChild size="sm"><Link href="/expenses/new">Add Expense</Link></Button>
-        </div>
+        <EmptyState
+          icon={Receipt}
+          title="No expenses logged yet"
+          description="Track repairs, insurance, utilities, and any other costs associated with your properties."
+          tip="Logging expenses throughout the year pays off at tax time. Landlord Ledger flags vendors paid $600+ so you know when a 1099-NEC may be required."
+          ctaLabel="Log Your First Expense"
+          ctaHref="/expenses/new"
+        />
       ) : (
         <div className="rounded-xl border border-border overflow-hidden overflow-x-auto">
           <table className="w-full min-w-[750px] text-sm">

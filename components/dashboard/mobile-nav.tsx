@@ -12,7 +12,7 @@ import { createClient } from "@/lib/supabase/client";
 import { ThemeToggle } from "@/components/theme-toggle";
 
 const navItems = [
-  { href: "/", label: "Dashboard", icon: LayoutDashboard },
+  { href: "/dashboard", label: "Dashboard", icon: LayoutDashboard },
   { href: "/properties", label: "Properties", icon: Building2 },
   { href: "/tenants", label: "Tenants", icon: Users },
   { href: "/leases", label: "Leases", icon: FileText },
@@ -51,7 +51,7 @@ export function MobileNav({ userEmail }: { userEmail: string }) {
         <div className="lg:hidden absolute top-[49px] left-0 right-0 z-50 bg-card border-b border-border shadow-lg">
           <nav className="px-3 py-3 space-y-0.5">
             {navItems.map(({ href, label, icon: Icon }) => {
-              const active = href === "/" ? pathname === "/" : pathname.startsWith(href);
+              const active = href === "/dashboard" ? pathname === "/dashboard" : pathname.startsWith(href);
               return (
                 <Link
                   key={href}

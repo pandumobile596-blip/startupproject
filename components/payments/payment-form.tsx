@@ -16,10 +16,23 @@ type LeaseOption = {
   units: { unit_number: string; properties: { name: string } | null } | null;
 };
 
-export function PaymentForm({ leases }: { leases: LeaseOption[] }) {
+export function PaymentForm({
+  leases,
+  defaultLeaseId,
+  defaultAmount,
+}: {
+  leases: LeaseOption[];
+  defaultLeaseId?: string;
+  defaultAmount?: string;
+}) {
   const [state, action, pending] = useActionState(createPayment, undefined);
 
   const today = new Date().toISOString().split("T")[0];
+
+  // Pre-compute the due date for the pre-selected lease (1st of current month for day 1, etc.)
+  const preselectedLease = defaultLeaseId
+    ? leases.find((l) => l.id === defaultLeaseId)
+    : undefined;
 
   return (
     <form action={action} className="space-y-5">
@@ -29,9 +42,16 @@ export function PaymentForm({ leases }: { leases: LeaseOption[] }) {
         </p>
       )}
 
+      {defaultLeaseId && preselectedLease && (
+        <div className="rounded-lg bg-blue-50 dark:bg-blue-950/30 border border-blue-100 dark:border-blue-900/50 px-4 py-3 text-sm text-blue-700 dark:text-blue-300">
+          <span className="font-medium">Pre-filled from dashboard.</span> Review the details
+          below before submitting.
+        </div>
+      )}
+
       <div className="space-y-1.5">
         <Label htmlFor="lease_id">Lease (active)</Label>
-        <Select id="lease_id" name="lease_id" required>
+        <Select id="lease_id" name="lease_id" required defaultValue={defaultLeaseId ?? ""}>
           <option value="">Select a lease…</option>
           {leases.map((l) => {
             const name = l.tenants ? `${l.tenants.first_name} ${l.tenants.last_name}` : "Unknown";
@@ -68,7 +88,15 @@ export function PaymentForm({ leases }: { leases: LeaseOption[] }) {
 
       <div className="space-y-1.5">
         <Label htmlFor="amount">Amount ($)</Label>
-        <Input id="amount" name="amount" type="number" step="0.01" placeholder="1500.00" required />
+        <Input
+          id="amount"
+          name="amount"
+          type="number"
+          step="0.01"
+          placeholder="1500.00"
+          defaultValue={defaultAmount}
+          required
+        />
       </div>
 
       <div className="grid grid-cols-2 gap-3">

@@ -36,16 +36,19 @@ export async function updateSession(request: NextRequest) {
 
   const isAuthRoute = pathname.startsWith("/login") || pathname.startsWith("/signup");
   const isApiRoute = pathname.startsWith("/api");
+  // "/" is the public landing page — no auth required.
+  const isPublicRoute = pathname === "/" || isAuthRoute || isApiRoute;
 
-  if (!user && !isAuthRoute && !isApiRoute) {
+  if (!user && !isPublicRoute) {
     const url = request.nextUrl.clone();
     url.pathname = "/login";
     return NextResponse.redirect(url);
   }
 
-  if (user && isAuthRoute) {
+  // Authenticated users visiting the landing page or auth screens go to the dashboard.
+  if (user && (isAuthRoute || pathname === "/")) {
     const url = request.nextUrl.clone();
-    url.pathname = "/";
+    url.pathname = "/dashboard";
     return NextResponse.redirect(url);
   }
 

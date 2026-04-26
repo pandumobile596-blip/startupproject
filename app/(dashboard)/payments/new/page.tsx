@@ -5,10 +5,16 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = { title: "Log Payment" };
 
-export default async function NewPaymentPage() {
+export default async function NewPaymentPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ lease_id?: string; amount?: string }>;
+}) {
   const supabase = await createClient();
   const { data: { user } } = await supabase.auth.getUser();
   if (!user) notFound();
+
+  const { lease_id: defaultLeaseId, amount: defaultAmount } = await searchParams;
 
   const { data: leases } = await supabase
     .from("leases")
@@ -27,7 +33,11 @@ export default async function NewPaymentPage() {
         <h1 className="text-2xl font-semibold">Log Payment</h1>
         <p className="text-sm text-muted-foreground mt-0.5">Record a payment received from a tenant.</p>
       </div>
-      <PaymentForm leases={leases ?? []} />
+      <PaymentForm
+        leases={leases ?? []}
+        defaultLeaseId={defaultLeaseId}
+        defaultAmount={defaultAmount}
+      />
     </div>
   );
 }

@@ -3,6 +3,7 @@ import { createClient } from "@/lib/supabase/server";
 import { formatUSD } from "@/lib/utils/currency";
 import { formatDate } from "@/lib/utils/dates";
 import { Button } from "@/components/ui/button";
+import { EmptyState } from "@/components/ui/empty-state";
 import { DollarSign, Plus } from "lucide-react";
 import type { Metadata } from "next";
 
@@ -52,12 +53,14 @@ export default async function PaymentsPage() {
       </div>
 
       {(!payments || payments.length === 0) ? (
-        <div className="flex flex-col items-center justify-center rounded-xl border border-dashed border-border py-16 text-center space-y-3">
-          <DollarSign className="h-8 w-8 text-muted-foreground" />
-          <p className="text-sm font-medium">No payments logged yet</p>
-          <p className="text-sm text-muted-foreground">Record a payment received from a tenant.</p>
-          <Button asChild size="sm"><Link href="/payments/new">Log Payment</Link></Button>
-        </div>
+        <EmptyState
+          icon={DollarSign}
+          title="No payments logged yet"
+          description="Record rent payments as you receive them from your tenants each month."
+          tip="Log payments as you receive them. Landlord Ledger will automatically calculate your NOI and monthly rent collection rate in Reports."
+          ctaLabel="Log Your First Payment"
+          ctaHref="/payments/new"
+        />
       ) : (
         <div className="rounded-xl border border-border overflow-hidden overflow-x-auto">
           <table className="w-full min-w-[700px] text-sm">

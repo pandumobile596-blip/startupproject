@@ -13,7 +13,15 @@ type Tenant = { id: string; first_name: string; last_name: string };
 type Unit = { id: string; unit_number: string; status: string };
 type Property = { id: string; name: string; units: Unit[] };
 
-export function LeaseForm({ tenants, properties }: { tenants: Tenant[]; properties: Property[] }) {
+export function LeaseForm({
+  tenants,
+  properties,
+  defaultUnitId,
+}: {
+  tenants: Tenant[];
+  properties: Property[];
+  defaultUnitId?: string;
+}) {
   const [state, action, pending] = useActionState(createLease, undefined);
 
   return (
@@ -36,7 +44,7 @@ export function LeaseForm({ tenants, properties }: { tenants: Tenant[]; properti
 
       <div className="space-y-1.5">
         <Label htmlFor="unit_id">Unit</Label>
-        <Select id="unit_id" name="unit_id" required>
+        <Select id="unit_id" name="unit_id" required defaultValue={defaultUnitId ?? ""}>
           <option value="">Select a unit…</option>
           {properties.map((p) =>
             p.units.map((u) => (

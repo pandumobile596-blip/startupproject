@@ -191,6 +191,7 @@ export type Database = {
         Row: {
           created_at: string
           end_date: string | null
+          expected_rent_amount: number | null
           grace_period_days: number
           id: string
           landlord_id: string
@@ -198,6 +199,7 @@ export type Database = {
           late_fee_type: Database["public"]["Enums"]["late_fee_type"] | null
           notes: string | null
           payment_due_day: number
+          rent_due_day: number | null
           rent_amount: number
           security_deposit: number
           start_date: string
@@ -210,6 +212,7 @@ export type Database = {
         Insert: {
           created_at?: string
           end_date?: string | null
+          expected_rent_amount?: number | null
           grace_period_days?: number
           id?: string
           landlord_id: string
@@ -217,6 +220,7 @@ export type Database = {
           late_fee_type?: Database["public"]["Enums"]["late_fee_type"] | null
           notes?: string | null
           payment_due_day?: number
+          rent_due_day?: number | null
           rent_amount: number
           security_deposit?: number
           start_date: string
@@ -229,6 +233,7 @@ export type Database = {
         Update: {
           created_at?: string
           end_date?: string | null
+          expected_rent_amount?: number | null
           grace_period_days?: number
           id?: string
           landlord_id?: string
@@ -236,6 +241,7 @@ export type Database = {
           late_fee_type?: Database["public"]["Enums"]["late_fee_type"] | null
           notes?: string | null
           payment_due_day?: number
+          rent_due_day?: number | null
           rent_amount?: number
           security_deposit?: number
           start_date?: string
